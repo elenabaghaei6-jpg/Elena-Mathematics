@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+
+<audio id="bgMusic" autoplay loop preload="auto" style="display:none">
+  <source src="MainTheme.m4a" type="audio/mp4">
+</audio>
+
+
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elena Mathematics | Cosmic Edition</title>
+<style>
+:root{
+  --space:#060816;
+  --midnight:#10132b;
+  --purple:#8b5cf6;
+  --pink:#ec4899;
+  --cyan:#22d3ee;
+  --gold:#fbbf24;
+  --white:#f8fafc;
+  --soft:#dbeafe;
+  --glass:rgba(255,255,255,.12);
+  --border:rgba(255,255,255,.2);
+  --shadow:0 24px 70px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Tahoma, Arial, sans-serif;
+  color:var(--white);
+  line-height:1.9;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(139,92,246,.55), transparent 28%),
+    radial-gradient(circle at 85% 20%, rgba(34,211,238,.42), transparent 24%),
+    radial-gradient(circle at 50% 95%, rgba(251,191,36,.18), transparent 28%),
+    linear-gradient(135deg,#050616,#0f1230 50%,#171044);
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background-image:
+    radial-gradient(#ffffff 1px, transparent 1px),
+    radial-gradient(#22d3ee 1px, transparent 1px);
+  background-size:42px 42px, 85px 85px;
+  background-position:0 0, 25px 35px;
+  opacity:.18;
+  animation:stars 22s linear infinite;
+}
+body:after{
+  content:"π  φ  ∞  √  ∑  2:1  3:2  Fibonacci  Geometry  Music  Universe";
+  position:fixed;
+  inset:-80px;
+  z-index:-2;
+  opacity:.06;
+  color:white;
+  font-size:68px;
+  line-height:2.4;
+  transform:rotate(-14deg);
+  pointer-events:none;
+}
+@keyframes stars{
+  from{background-position:0 0,25px 35px}
+  to{background-position:280px 280px,360px 410px}
+}
+a{color:inherit}
+
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(6,8,22,.66);
+  backdrop-filter:blur(22px);
+  border-bottom:1px solid rgba(255,255,255,.18);
+  box-shadow:0 12px 35px rgba(0,0,0,.22);
+}
+.nav-inner{
+  max-width:1240px;
+  margin:auto;
+  padding:12px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.logo{
+  width:52px;
+  height:52px;
+  border-radius:19px;
+  display:grid;
+  place-items:center;
+  color:#090b1a;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--gold),var(--cyan),var(--purple));
+  box-shadow:0 0 32px rgba(34,211,238,.48);
+}
+.menu{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+}
+.menu-item{
+  position:relative;
+}
+.menu-link,
+.menu a{
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  font-size:14px;
+  transition:.25s;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  cursor:pointer;
+}
+.menu-link:hover,
+.menu a:hover{
+  transform:translateY(-3px);
+  background:linear-gradient(135deg,rgba(139,92,246,.75),rgba(34,211,238,.55));
+  box-shadow:0 0 24px rgba(34,211,238,.28);
+}
+.dropdown{
+  position:absolute;
+  top:48px;
+  right:0;
+  min-width:230px;
+  padding:10px;
+  border-radius:22px;
+  background:rgba(12,15,38,.92);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 22px 60px rgba(0,0,0,.38);
+  opacity:0;
+  transform:translateY(10px);
+  visibility:hidden;
+  transition:.25s;
+}
+.menu-item:hover .dropdown{
+  opacity:1;
+  transform:translateY(0);
+  visibility:visible;
+}
+.dropdown a{
+  display:flex;
+  width:100%;
+  justify-content:flex-start;
+  margin:4px 0;
+  border-radius:15px;
+  background:rgba(255,255,255,.07);
+  white-space:nowrap;
+}
+.start-btn{
+  text-decoration:none;
+  padding:11px 17px;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--gold),#fff0a8);
+  color:#09111f;
+  font-weight:900;
+  box-shadow:0 0 28px rgba(251,191,36,.35);
+  transition:.25s;
+}
+.start-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 36px rgba(251,191,36,.55);
+}
+
+.hero{
+  max-width:1220px;
+  margin:auto;
+  padding:78px 18px 52px;
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:28px;
+  align-items:center;
+}
+.glass{
+  background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.07));
+  border:1px solid var(--border);
+  border-radius:34px;
+  backdrop-filter:blur(18px);
+  box-shadow:var(--shadow);
+}
+.hero-box{padding:44px}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 16px;
+  border-radius:999px;
+  background:rgba(251,191,36,.14);
+  border:1px solid rgba(251,191,36,.38);
+  color:#fff2bd;
+  font-weight:900;
+}
+h1{
+  font-size:clamp(38px,7vw,76px);
+  line-height:1.16;
+  margin:18px 0 10px;
+  background:linear-gradient(135deg,#fff,var(--cyan),var(--gold));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.subtitle{
+  font-size:21px;
+  color:#ffe6a3;
+  font-weight:900;
+  margin-bottom:18px;
+}
+p{color:var(--soft);margin:0 0 16px}
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:24px;
+}
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  border-radius:18px;
+  padding:13px 22px;
+  font-weight:900;
+  transition:.25s;
+}
+.btn-primary{
+  color:#07111f;
+  background:linear-gradient(135deg,var(--gold),#fff0a8);
+  box-shadow:0 0 24px rgba(251,191,36,.32);
+}
+.btn-secondary{
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--border);
+}
+.btn:hover{transform:translateY(-4px)}
+.visual{
+  min-height:430px;
+  position:relative;
+  overflow:hidden;
+}
+.planet{
+  position:absolute;
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  background:
+    radial-gradient(circle at 35% 30%, #fff6bd, transparent 18%),
+    linear-gradient(135deg,var(--purple),var(--cyan) 55%,var(--gold));
+  box-shadow:0 0 55px rgba(34,211,238,.48);
+}
+.ring{
+  position:absolute;
+  width:330px;
+  height:118px;
+  border:2px solid rgba(255,255,255,.28);
+  border-radius:50%;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%) rotate(-18deg);
+}
+.orbit{
+  position:absolute;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:50%;
+}
+.o1{width:360px;height:360px;right:26px;top:38px}
+.o2{width:250px;height:250px;left:44px;bottom:34px}
+.formula{
+  position:absolute;
+  padding:11px 15px;
+  border-radius:18px;
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 14px 40px rgba(0,0,0,.28);
+  font-size:20px;
+}
+.f1{top:42px;right:42px}.f2{top:112px;left:46px}.f3{bottom:80px;right:58px}.f4{bottom:35px;left:85px}
+.container{
+  max-width:1220px;
+  margin:auto;
+  padding:24px 18px 80px;
+}
+.section-title{
+  text-align:center;
+  margin:44px 0 24px;
+}
+.section-title h2{
+  margin:0 0 8px;
+  font-size:clamp(27px,4.5vw,44px);
+}
+.section-title span{
+  color:var(--gold);
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.card{
+  padding:24px;
+  transition:.25s;
+  position:relative;
+  overflow:hidden;
+}
+.card:before{
+  content:"";
+  position:absolute;
+  inset:auto -30px -40px auto;
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  background:rgba(34,211,238,.15);
+}
+.card:hover{
+  transform:translateY(-8px);
+  background:linear-gradient(145deg,rgba(139,92,246,.24),rgba(34,211,238,.13));
+  box-shadow:0 0 36px rgba(34,211,238,.18), var(--shadow);
+}
+.icon{font-size:38px;margin-bottom:8px}
+.chapters{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:14px;
+}
+.chapter{
+  padding:18px;
+  text-align:center;
+  border-radius:22px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.16);
+  transition:.25s;
+}
+.chapter:hover{
+  transform:scale(1.04);
+  background:linear-gradient(135deg,rgba(139,92,246,.42),rgba(34,211,238,.28));
+}
+.article{
+  padding:32px;
+  margin-bottom:24px;
+}
+.article h3{
+  color:#ffedb0;
+  font-size:28px;
+  margin:0 0 14px;
+}
+.article-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin:18px 0;
+}
+.mini{
+  padding:18px;
+  border-radius:22px;
+  background:rgba(255,255,255,.085);
+  border:1px solid rgba(255,255,255,.13);
+}
+.quote{
+  padding:18px;
+  border-radius:20px;
+  border-right:5px solid var(--gold);
+  background:rgba(251,191,36,.13);
+  color:#fff6d7;
+  font-weight:900;
+}
+.linkbox{
+  display:inline-block;
+  margin-top:10px;
+  padding:11px 17px;
+  border-radius:16px;
+  background:linear-gradient(135deg,var(--cyan),#a7f3d0);
+  color:#07111f;
+  text-decoration:none;
+  font-weight:900;
+}
+.reading-cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-bottom:25px;
+}
+.reading-card{
+  min-height:150px;
+  padding:24px;
+  border-radius:26px;
+  background:
+    linear-gradient(145deg,rgba(139,92,246,.25),rgba(34,211,238,.11));
+  border:1px solid rgba(255,255,255,.16);
+  transition:.25s;
+}
+.reading-card:hover{transform:translateY(-7px)}
+.innovation{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:15px;
+}
+.backtop{
+  position:fixed;
+  left:18px;
+  bottom:18px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--gold),var(--cyan));
+  color:#08111f;
+  text-decoration:none;
+  font-weight:900;
+  box-shadow:0 0 30px rgba(34,211,238,.35);
+}
+footer{
+  text-align:center;
+  padding:30px;
+  border-top:1px solid var(--border);
+  background:rgba(0,0,0,.26);
+  color:var(--soft);
+}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:42px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .reading-cards{grid-template-columns:1fr}
+  .article-grid{grid-template-columns:1fr}
+  .nav-inner{flex-wrap:wrap;justify-content:center}
+  .menu{width:100%}
+  .dropdown{position:static;display:none;opacity:1;visibility:visible;transform:none;margin-top:5px}
+  .menu-item:hover .dropdown{display:block}
+}
+
+@media(max-width:560px){
+  .grid{grid-template-columns:1fr}
+  .hero-box,.article{padding:24px}
+  .visual{min-height:330px}
+  .menu a{font-size:13px;padding:8px 11px}
+}
+
+.harp-player{
+  text-align:center;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(251,191,36,.22), transparent 30%),
+    linear-gradient(145deg,rgba(139,92,246,.23),rgba(34,211,238,.13));
+}
+.harp-player audio{
+  margin:14px auto;
+  display:block;
+  filter:drop-shadow(0 0 18px rgba(34,211,238,.28));
+}
+.harp-btn{
+  border:0;
+  cursor:pointer;
+  margin-top:10px;
+  padding:12px 20px;
+  border-radius:999px;
+  font-family:Tahoma, Arial, sans-serif;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--gold),#fff0a8);
+  color:#07111f;
+  box-shadow:0 0 26px rgba(251,191,36,.35);
+  transition:.25s;
+}
+.harp-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 36px rgba(251,191,36,.55);
+}
+
+
+.quiz-box label{
+  display:block;
+  padding:9px 12px;
+  margin:7px 0;
+  border-radius:14px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  cursor:pointer;
+  transition:.25s;
+}
+.quiz-box label:hover{
+  background:rgba(34,211,238,.18);
+  transform:translateX(-4px);
+}
+.quiz-question{
+  margin:18px 0;
+  padding:16px;
+  border-radius:22px;
+  background:rgba(255,255,255,.06);
+}
+.quiz-btn{
+  border:0;
+  cursor:pointer;
+  padding:13px 22px;
+  border-radius:999px;
+  font-family:Tahoma, Arial, sans-serif;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--gold),#fff0a8);
+  color:#07111f;
+  box-shadow:0 0 26px rgba(251,191,36,.35);
+}
+.quiz-result{
+  margin-top:18px;
+  padding:16px;
+  border-radius:18px;
+  background:rgba(34,211,238,.14);
+  border:1px solid rgba(34,211,238,.25);
+  font-weight:900;
+  display:none;
+}
+
+
+.lesson-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.lesson-btn{
+  display:block;
+  text-decoration:none;
+  padding:13px 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.16);
+  color:#f8fafc;
+  font-weight:900;
+  transition:.25s;
+}
+.lesson-btn:hover{
+  transform:translateY(-4px);
+  background:linear-gradient(135deg,rgba(139,92,246,.55),rgba(34,211,238,.35));
+  box-shadow:0 0 28px rgba(34,211,238,.22);
+}
+.lesson-btn.podcast{
+  background:rgba(251,191,36,.12);
+  border-color:rgba(251,191,36,.28);
+}
+.lesson-btn.telewebion{
+  background:rgba(236,72,153,.13);
+  border-color:rgba(236,72,153,.28);
+}
+.video-chapter h3,
+.video-source h3{
+  color:#ffedb0;
+}
+
+</style>
+</head>
+<body id="top">
+
+
+<header class="navbar">
+  <div class="nav-inner">
+    <div class="brand"><div class="logo">EM</div><span>Elena Mathematics</span></div>
+    <nav class="menu">
+      <div class="menu-item">
+        <a class="menu-link" href="#home">🏠 خانه</a>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-link">📘 مرکز یادگیری ▾</span>
+        <div class="dropdown">
+          <a href="#chapters">📚 فصل‌های ریاضی</a>
+          <a href="#videos">🎥 فیلم‌های آموزشی</a>
+          <a href="#quiz">🧠 آزمون آنلاین</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-link">🌍 کشف ریاضیات ▾</span>
+        <div class="dropdown">
+          <a href="#reading">🌻 فیبوناچی</a>
+          <a href="#reading">✨ نسبت طلایی</a>
+          <a href="#reading">🌌 ریاضیات در جهان</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-link">🎼 ریاضی و موسیقی ▾</span>
+        <div class="dropdown">
+          <a href="#reading">🎵 هارمونی اعداد</a>
+          <a href="#reading">🎼 چنگ و ریاضیات</a>
+          <a href="#reading">📐 فیثاغورث</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-link">🏆 پروژه ▾</span>
+        <div class="dropdown">
+          <a href="#innovation">✨ نوآوری پروژه</a>
+          <a href="#about">👩‍🎓 درباره النا</a>
+        </div>
+      </div>
+
+      <a class="start-btn" href="#chapters">شروع یادگیری 🚀</a>
+    </nav>
+  </div>
+</header>
+
+
+<section class="hero" id="home">
+  <div class="hero-box glass">
+    <div class="badge">🌌 Cosmic Mathematics</div>
+    <h1>Elena Mathematics</h1>
+    <div class="subtitle">Exploring the Universal Language of Mathematics</div>
+    <p>به دنیای Elena Mathematics خوش آمدید؛ جایی که ریاضیات فقط فرمول نیست، بلکه زبان جهانی طبیعت، هنر، موسیقی و جهان هستی است.</p>
+    <p>این سایت برای یادگیری ریاضی، دیدن کاربردهای جذاب آن و ارائه یک پروژه متفاوت و چشمگیر طراحی شده است.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#chapters">شروع یادگیری</a>
+      <a class="btn btn-secondary" href="#reading">کشف خواندنی‌ها</a>
+    </div>
+  </div>
+  <div class="visual glass">
+    <div class="orbit o1"></div>
+    <div class="orbit o2"></div>
+    <div class="planet"></div>
+    <div class="ring"></div>
+    <div class="formula f1">φ = 1.618</div>
+    <div class="formula f2">π ≈ 3.14</div>
+    <div class="formula f3">Fₙ = Fₙ₋₁ + Fₙ₋₂</div>
+    <div class="formula f4">🎵 2 : 1</div>
+  </div>
+</section>
+
+<main class="container">
+
+<section class="section-title">
+  <h2>امکانات <span>ویژه سایت</span></h2>
+  <p>طراحی جذاب، محتوای علمی و مناسب ارائه پروژه</p>
+</section>
+
+<section class="grid">
+  <div class="card glass"><div class="icon">📘</div><h3>فصل‌های ریاضی</h3><p>دسترسی مرتب به فصل‌های ریاضی نهم.</p></div>
+  <div class="card glass"><div class="icon">🎥</div><h3>فیلم‌های آموزشی</h3><p>بخش مخصوص ویدئوهای آموزشی هر فصل.</p></div>
+  <div class="card glass"><div class="icon">🧠</div><h3>آزمون آنلاین</h3><p>تمرین و سنجش یادگیری دانش‌آموزان.</p></div>
+  <div class="card glass"><div class="icon">🌍</div><h3>ریاضی جهانی</h3><p>ارتباط ریاضی با طبیعت، هنر، موسیقی و جهان.</p></div>
+</section>
+
+<section class="section-title" id="chapters">
+  <h2>فصل‌های <span>ریاضی نهم</span></h2>
+</section>
+
+<section class="chapters">
+  <div class="chapter">فصل ۱<br>مجموعه‌ها</div>
+  <div class="chapter">فصل ۲<br>عددهای حقیقی</div>
+  <div class="chapter">فصل ۳<br>استدلال و اثبات</div>
+  <div class="chapter">فصل ۴<br>توان و ریشه</div>
+  <div class="chapter">فصل ۵<br>عبارت‌های جبری</div>
+  <div class="chapter">فصل ۶<br>خط و معادله</div>
+  <div class="chapter">فصل ۷<br>عبارت‌های گویا</div>
+  <div class="chapter">فصل ۸<br>حجم و مساحت</div>
+</section>
+
+
+
+
+<section class="section-title" id="videos">
+  <h2>فیلم‌های <span>آموزشی ریاضی نهم</span></h2>
+  <p>فصل‌های ۱ تا ۸ به‌صورت مرتب همراه با لینک‌های آموزشی و منابع رسمی</p>
+</section>
+
+<section class="article glass video-source">
+  <h3>📚 منابع رسمی آموزش ریاضی</h3>
+  <div class="lesson-grid">
+    <a class="lesson-btn" href="https://www.aparat.com/dabirkhanehreyazi" target="_blank">📺 کانال آپارات دبیرخانه کشوری ریاضی</a>
+    <a class="lesson-btn" href="https://lse.medu.gov.ir/fa/node/249846" target="_blank">🏛️ دبیرخانه ریاضی متوسطه اول</a>
+    <div class="mini">📱 کانال شاد دبیرخانه ریاضی: @math_gam1</div>
+    <div class="mini">📱 کانال محور ریاضی خوارزمی: @math_nojavan</div>
+  </div>
+</section>
+
+<section class="article glass video-chapter">
+  <h3>📘 فصل اول: مجموعه‌ها</h3>
+  <div class="lesson-grid">
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjhkdxvo7ib" target="_blank">🎥 درس اول</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjhpgp2q8p" target="_blank">🎥 درس دوم</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjhkk6pf6ij" target="_blank">🎥 درس سوم</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjhky5ax788" target="_blank">🎥 درس چهارم</a>
+  </div>
+</section>
+
+<section class="article glass video-chapter">
+  <h3>📗 فصل دوم: عددهای حقیقی</h3>
+  <div class="lesson-grid">
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmja3n83c2qd" target="_blank">🎥 درس اول - کلیپ ۱</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjae7mus3b1" target="_blank">🎥 درس اول - کلیپ ۲</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjaer91e3eu" target="_blank">🎥 درس دوم - کلیپ ۱</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjaf38sr7fi" target="_blank">🎥 درس دوم - کلیپ ۲</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjaft3sh1k" target="_blank">🎥 درس سوم - کلیپ ۱</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjb470zk2hr" target="_blank">🎥 درس سوم - کلیپ ۲</a>
+  </div>
+</section>
+
+<section class="article glass video-chapter">
+  <h3>📙 فصل سوم: استدلال و اثبات</h3>
+  <div class="lesson-grid">
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjc3v5u47fj" target="_blank">🎥 درس اول</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjd6k39crs" target="_blank">🎥 درس دوم</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjd6r85f120" target="_blank">🎥 درس سوم</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjd6vs9w2pa" target="_blank">🎥 درس چهارم</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjd6zs1v4oy" target="_blank">🎥 درس پنجم</a>
+  </div>
+  <h4>🎧 پادکست‌های فصل سوم</h4>
+  <div class="lesson-grid">
+    <a class="lesson-btn podcast" href="https://kandoo.medu.ir/v/NUmj9dltb34wk" target="_blank">🎧 پادکست درس اول</a>
+    <a class="lesson-btn podcast" href="https://kandoo.medu.ir/v/NUmj9dsjsi30s" target="_blank">🎧 پادکست درس دوم</a>
+    <a class="lesson-btn podcast" href="https://kandoo.medu.ir/v/NUmj9efcx778t" target="_blank">🎧 پادکست درس سوم</a>
+    <a class="lesson-btn podcast" href="https://kandoo.medu.ir/v/NUmj9evyem3jq" target="_blank">🎧 پادکست درس چهارم</a>
+    <a class="lesson-btn podcast" href="https://kandoo.medu.ir/v/NUmj9f1paa58w" target="_blank">🎧 پادکست درس پنجم</a>
+  </div>
+</section>
+
+<section class="article glass video-chapter">
+  <h3>📕 فصل چهارم: توان و ریشه</h3>
+  <div class="lesson-grid">
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjb4nug877y" target="_blank">🎥 درس اول</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjb55a2h3y" target="_blank">🎥 درس دوم</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjb5j5yc9b" target="_blank">🎥 درس سوم</a>
+    <a class="lesson-btn" href="https://kandoo.medu.ir/v/NUmjb5uioh35q" target="_blank">🎥 درس چهارم</a>
+  </div>
+</section>
+
+
+
+<section class="article glass video-chapter">
+  <h3>📔 فصل ششم: خط و معادله‌های خطی</h3>
+  <div class="lesson-grid">
+    <a class="lesson-btn telewebion" href="https://telewebion.ir/episode/0x16be14a7" target="_blank">📺 شیب و عرض از مبدأ خط - شبکه آموزش</a>
+    <a class="lesson-btn telewebion" href="https://www.aparat.com/video/video/embed/videohash/appo64h/vt/frame" target="_blank">📺 حل نمونه سؤال نهم - قسمت اول</a>
+    <a class="lesson-btn telewebion" href="https://www.aparat.com/video/video/embed/videohash/udrg026/vt/frame" target="_blank">📺 حل نمونه سؤال نهم - قسمت دوم</a>
+  </div>
+</section>
+
+
+
+
+
+<section class="article glass video-chapter">
+  <h3>📺 فیلم‌های منتخب شبکه آموزش و مرورها</h3>
+  <div class="lesson-grid">
+    <a class="lesson-btn telewebion" href="https://telewebion.ir/episode/0x16be14a7" target="_blank">📺 ریاضی نهم: شیب و عرض از مبدأ خط</a>
+    <a class="lesson-btn telewebion" href="https://telewebion.ir/episode/0x16be14a5" target="_blank">📺 ریاضی هشتم: خواص ضرب و تقسیم رادیکال‌ها</a>
+    <a class="lesson-btn telewebion" href="https://telewebion.ir/episode/0x16be14a2" target="_blank">📺 ریاضی هفتم: مرور و تمرین فصل ۷</a>
+  </div>
+  <p>مدرس شبکه آموزش: مهدی غروی | تاریخ پخش: یکشنبه ۲۳ فروردین</p>
+</section>
+
+<section class="section-title" id="quiz">
+  <h2>آزمون <span>ریاضی نهم</span></h2>
+  <p>به سؤال‌های زیر پاسخ بده و در پایان امتیازت را ببین.</p>
+</section>
+
+<section class="article glass quiz-box">
+  <h3>📝 آزمون کوتاه ریاضی نهم</h3>
+
+  <div class="quiz-question">
+    <p><b>۱) اگر A = {1, 2, 3, 4} باشد، تعداد زیرمجموعه‌های A چند تاست؟</b></p>
+    <label><input type="radio" name="q1" value="0"> ۸</label>
+    <label><input type="radio" name="q1" value="0"> ۱۲</label>
+    <label><input type="radio" name="q1" value="1"> ۱۶</label>
+    <label><input type="radio" name="q1" value="0"> ۳۲</label>
+  </div>
+
+  <div class="quiz-question">
+    <p><b>۲) حاصل √81 کدام است؟</b></p>
+    <label><input type="radio" name="q2" value="0"> ۷</label>
+    <label><input type="radio" name="q2" value="0"> ۸</label>
+    <label><input type="radio" name="q2" value="1"> ۹</label>
+    <label><input type="radio" name="q2" value="0"> ۱۰</label>
+  </div>
+
+  <div class="quiz-question">
+    <p><b>۳) عدد 0.3333... برابر است با:</b></p>
+    <label><input type="radio" name="q3" value="0"> 1/2</label>
+    <label><input type="radio" name="q3" value="1"> 1/3</label>
+    <label><input type="radio" name="q3" value="0"> 2/3</label>
+    <label><input type="radio" name="q3" value="0"> 3/4</label>
+  </div>
+
+  <div class="quiz-question">
+    <p><b>۴) شیب خطی که از نقاط (2,3) و (4,7) می‌گذرد چقدر است؟</b></p>
+    <label><input type="radio" name="q4" value="0"> ۱</label>
+    <label><input type="radio" name="q4" value="1"> ۲</label>
+    <label><input type="radio" name="q4" value="0"> ۳</label>
+    <label><input type="radio" name="q4" value="0"> ۴</label>
+  </div>
+
+  <div class="quiz-question">
+    <p><b>۵) احتمال آمدن عدد ۶ در پرتاب یک تاس سالم برابر است با:</b></p>
+    <label><input type="radio" name="q5" value="0"> 1/3</label>
+    <label><input type="radio" name="q5" value="0"> 1/4</label>
+    <label><input type="radio" name="q5" value="0"> 1/5</label>
+    <label><input type="radio" name="q5" value="1"> 1/6</label>
+  </div>
+
+  <button class="quiz-btn" onclick="checkQuiz()">بررسی پاسخ‌ها ✅</button>
+  <div id="quizResult" class="quiz-result"></div>
+</section>
+
+<section class="section-title" id="reading">
+  <h2>خواندنی‌های <span>جذاب ریاضی</span></h2>
+  <p>مطالبی که نشان می‌دهند ریاضی در همه جای جهان حضور دارد.</p>
+</section>
+
+<section class="reading-cards">
+  <div class="reading-card"><h3>🌻 فیبوناچی</h3><p>الگوی عددی در طبیعت، هنر و طراحی</p></div>
+  <div class="reading-card"><h3>🎼 چنگ و موسیقی</h3><p>نسبت‌های عددی در صدا و خوش‌آهنگی</p></div>
+  <div class="reading-card"><h3>🌌 ریاضیات جهان</h3><p>زبان مشترک علم، طبیعت و هستی</p></div>
+</section>
+
+<article class="article glass">
+  <h3>📚 لئوناردو فیبوناچی؛ ریاضیدانی که طبیعت را رمزگشایی کرد</h3>
+  <p>لئوناردو فیبوناچی یکی از مشهورترین ریاضیدانان قرون وسطی بود. شهرت او بیشتر به دلیل معرفی دنباله‌ای از اعداد است که امروزه به نام «دنباله فیبوناچی» شناخته می‌شود.</p>
+  <div class="quote">۱، ۱، ۲، ۳، ۵، ۸، ۱۳، ۲۱، ۳۴، ...</div>
+  <p>در این دنباله، هر عدد از جمع دو عدد قبلی به دست می‌آید. این الگو در طبیعت، گل‌ها، صدف‌ها، دانه‌های آفتابگردان و حتی طراحی‌های هنری دیده می‌شود.</p>
+  <p>دنباله فیبوناچی نشان می‌دهد که ریاضیات زبانی جهانی برای توصیف نظم پنهان جهان است.</p>
+  <a class="linkbox" target="_blank" href="https://fa.wikipedia.org/wiki/%D9%84%D8%A6%D9%88%D9%86%D8%A7%D8%B1%D8%AF%D9%88_%D9%81%DB%8C%D8%A8%D9%88%D9%86%D8%A7%DA%86%DB%8C">مطالعه بیشتر درباره فیبوناچی</a>
+</article>
+
+
+
+<div class="article glass harp-player" id="harp">
+  <h3>🎵 اجرای چنگ</h3>
+  <p>این اجرای چنگ اختیاری است؛ هر زمان خواستید روی دکمه پخش بزنید.</p>
+
+  <audio id="harpAudio" controls preload="none" style="width:100%;max-width:650px;">
+    <source src="Third3.m4a" type="audio/mp4">
+    مرورگر شما از پخش صدا پشتیبانی نمی‌کند.
+  </audio>
+
+  <button class="harp-btn" onclick="document.getElementById('harpAudio').play()">▶ پخش اختیاری اجرای چنگ</button>
+</div>
+<article class="article glass">
+  <h3>🎼 هارمونی اعداد: چنگ، ریاضیات و راز خوش‌آهنگی</h3>
+<div style="text-align:center;margin:20px 0;">
+  <img src="harp_photo.jpg"
+       alt="اجرای چنگ"
+       style="width:100%;max-width:700px;border-radius:24px;
+       box-shadow:0 0 40px rgba(251,191,36,.35);">
+  <p style="margin-top:10px;">🎼 اجرای چنگ</p>
+</div>
+
+  <p>وقتی به ساز چنگ نگاه می‌کنیم، با دسته‌ای از سیم‌های موازی روبرویم. اما در پس‌زمینهٔ این زیبایی بصری، دنیایی از نسبت‌های ریاضی نهفته است.</p>
+
+  <div class="article-grid">
+    <div class="mini"><b>نسبت طلایی در سیم‌ها</b><br>طول سیم‌های چنگ از قانونی ساده پیروی می‌کند: نسبت طول دو سیم مجاور برای تولید فاصلهٔ نیم‌پرده، حدود ۱۶:۱۵ است. موقعیت اتصال سیم‌ها به خرک نیز می‌تواند از نسبت طلایی ۱٫۶۱۸ الهام بگیرد.</div>
+    <div class="mini"><b>نسبت فرکانس و فاصلهٔ موسیقایی</b><br>در فیزیک صوت، بسامد هر سیم با طول آن رابطهٔ عکس دارد. فاصله‌های موسیقایی چیزی جز نسبت‌های سادهٔ اعداد نیستند.</div>
+    <div class="mini"><b>نسبت‌های موسیقایی</b><br>اکتاو: ۲ به ۱<br>پنجم درست: ۳ به ۲<br>چهارم درست: ۴ به ۳</div>
+    <div class="mini"><b>چنگ و سری فیبوناچی</b><br>تعداد سیم‌های چنگ در دوره‌های مختلف، از ۲۲ سیم در دوران باستان تا ۴۷ سیم در چنگ کنسرتی مدرن، به بعضی اعداد دنباله فیبوناچی نزدیک بوده است.</div>
+  </div>
+
+  <p>وقتی نوازنده انگشت خود را روی سیم می‌گذارد، عملاً طول مؤثر سیم را به کسری از طول اصلی تبدیل می‌کند و همان نسبت ریاضی را بازآفرینی می‌کند.</p>
+  <p>چنگ نه فقط یک ساز، بلکه ماشینی برای شنیدن اعداد است. هر نغمهٔ آن، نسبتی از فرکانس‌هاست که مغز ما آن را به‌عنوان زیبایی تفسیر می‌کند.</p>
+  <p>فیثاغورث اولین بار این راز را کشف کرد و امروز می‌دانیم که موسیقی، ریاضیات جاری در هواست.</p>
+  <div class="quote">«موسیقی، ریاضیاتی است که در آن به‌جای اعداد، با گوش می‌اندیشیم.»</div>
+  <a class="linkbox" target="_blank" href="https://fa.wikipedia.org/wiki/%D9%85%D9%88%D8%B3%DB%8C%D9%82%DB%8C_%D9%88_%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C%D8%A7%D8%AA">مطالعه بیشتر درباره موسیقی و ریاضیات</a>
+</article>
+
+<article class="article glass">
+  <h3>🌻 نسبت طلایی در طبیعت و هنر</h3>
+  <p>نسبت طلایی یکی از زیباترین نسبت‌های ریاضی است که در طبیعت، معماری، نقاشی و طراحی دیده می‌شود. این نسبت نشان می‌دهد چگونه ریاضیات می‌تواند با زیبایی و هماهنگی همراه باشد.</p>
+</article>
+
+
+<article class="article glass">
+  <h3>📐 ریاضی نهم در زندگی روزمره</h3>
+  <p>ریاضی نهم فقط برای امتحان نیست. مبحث‌هایی مثل مجموعه‌ها، توان، ریشه، شیب خط، معادله و احتمال در زندگی واقعی هم کاربرد دارند.</p>
+  <div class="article-grid">
+    <div class="mini"><b>احتمال</b><br>برای پیش‌بینی نتیجه بازی‌ها، قرعه‌کشی و تصمیم‌گیری استفاده می‌شود.</div>
+    <div class="mini"><b>شیب خط</b><br>در نقشه‌کشی، طراحی جاده، نمودارها و بررسی تغییرات کاربرد دارد.</div>
+    <div class="mini"><b>توان و ریشه</b><br>در علوم، فیزیک، محاسبه مساحت و حل مسئله‌های عددی دیده می‌شود.</div>
+    <div class="mini"><b>مجموعه‌ها</b><br>برای دسته‌بندی اطلاعات و مرتب کردن داده‌ها استفاده می‌شوند.</div>
+  </div>
+</article>
+
+<section class="section-title" id="innovation">
+  <h2>چرا <span>Elena Mathematics</span> خاص است؟</h2>
+</section>
+
+<section class="innovation">
+  <div class="mini">🌍 نگاه جهانی به ریاضیات، نه فقط کشوری</div>
+  <div class="mini">🎨 ترکیب ریاضی با هنر و طبیعت</div>
+  <div class="mini">🎼 نمایش ارتباط ریاضی و موسیقی</div>
+  <div class="mini">🧪 محتوای علمی فراتر از کتاب درسی</div>
+  <div class="mini">📱 طراحی مناسب موبایل و کامپیوتر</div>
+  <div class="mini">✨ ظاهر فضایی، جذاب و متفاوت</div>
+</section>
+
+
+
+
+<section class="section-title" id="about">
+<h2>درباره <span>النا</span></h2>
+</section>
+<section class="card glass">
+<h3>👩‍🎓 درباره من</h3>
+<p>سلام، من <b>النا بقایی</b> هستم.</p>
+<p>من هارپ می‌نوازم و نوازندگی هارپ به افزایش تمرکز، دقت و نظم ذهنی من کمک کرده است. این مهارت‌ها تأثیر مثبتی بر یادگیری و تقویت ریاضی من داشته‌اند.</p>
+<p>به همین دلیل سایت <b>Elena Mathematics</b> را طراحی کردم تا یادگیری ریاضی جذاب‌تر و آسان‌تر شود.</p>
+</section>
+
+
+
+
+</main>
+
+<a class="backtop" href="#top">↑</a>
+
+<footer>
+  Elena Mathematics | Exploring the Universal Language of Mathematics
+</footer>
+
+
+
+
+
+
+
+
+<script>
+function checkQuiz(){
+  let score = 0;
+  let total = 5;
+  for(let i=1; i<=total; i++){
+    const answer = document.querySelector('input[name="q'+i+'"]:checked');
+    if(answer && answer.value === "1"){
+      score++;
+    }
+  }
+  const result = document.getElementById("quizResult");
+  let message = "";
+  if(score === 5){
+    message = "🏆 عالی! شما ۵ از ۵ پاسخ صحیح دادید.";
+  }else if(score >= 3){
+    message = "👏 خوب بود! شما " + score + " از ۵ پاسخ صحیح دادید.";
+  }else{
+    message = "📚 نیاز به تمرین بیشتر داری. شما " + score + " از ۵ پاسخ صحیح دادید.";
+  }
+  result.innerHTML = message;
+  result.style.display = "block";
+}
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+ const bg=document.getElementById("bgMusic");
+ const harp=document.getElementById("harpAudio");
+ if(!bg || !harp) return;
+
+ harp.addEventListener("play",()=>{
+   bg.pause();
+   bg.currentTime = bg.currentTime;
+ });
+
+ harp.addEventListener("playing",()=>{
+   bg.pause();
+ });
+
+ harp.addEventListener("pause",()=>{
+   bg.play().catch(()=>{});
+ });
+
+ harp.addEventListener("ended",()=>{
+   bg.play().catch(()=>{});
+ });
+});
+</script>
+
+</body>
+</html>
